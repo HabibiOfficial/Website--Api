@@ -1,7 +1,7 @@
 {
   "name": "naze-rest-api",
   "version": "1.0.0",
-  "description": "Production-ready REST API for naze.biz.id",
+  "description": "Production-ready REST API for naze.biz.id with media download, games, utilities, and more",
   "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon --exec ts-node src/index.ts",
@@ -9,22 +9,26 @@
     "start": "node dist/index.js",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "db:migrate": "node dist/migrations/run.js"
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "keywords": [
     "rest-api",
     "express",
     "typescript",
-    "postgresql"
+    "postgresql",
+    "media-download",
+    "games",
+    "utilities"
   ],
   "author": "HabibiOfficial",
   "license": "MIT",
   "dependencies": {
+    "axios": "^1.6.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "pg": "^8.11.3",
+    "qrcode": "^1.5.3",
     "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
