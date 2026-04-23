@@ -6,6 +6,10 @@ import { setupSwagger } from './config/swagger';
 import { errorHandler } from './middleware/errorHandler';
 import healthRoutes from './routes/health';
 import productRoutes from './routes/products';
+import mediaRoutes from './routes/media';
+import utilityRoutes from './routes/utility';
+import gameRoutes from './routes/games';
+import apiKeyRoutes from './routes/apikeys';
 
 // Load environment variables
 dotenv.config();
@@ -25,8 +29,8 @@ export const pool = new Pool({
 
 // Middleware
 app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // Setup Swagger documentation
 setupSwagger(app);
@@ -34,6 +38,10 @@ setupSwagger(app);
 // Routes
 app.use('/', healthRoutes);
 app.use('/api', productRoutes);
+app.use('/api/media', mediaRoutes);
+app.use('/api/utility', utilityRoutes);
+app.use('/api/games', gameRoutes);
+app.use('/api/apikeys', apiKeyRoutes);
 
 // 404 handler
 app.use((req: Request, res: Response) => {
